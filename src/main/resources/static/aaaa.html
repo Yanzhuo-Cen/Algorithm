@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>企业资料</title>
+<link rel="stylesheet" href="css/layui.css">
+<script src="layui.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+
+<body>
+
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>昵称</th>
+      <th>加入时间</th>
+      <th>签名</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td>贤心</td>
+      <td>2016-11-29</td>
+      <td>人生就像是一场修行</td>
+    </tr>
+    <tr>
+      <td>许闲心</td>
+      <td>2016-11-28</td>
+      <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+<script>
+$(function(){
+	$post('/ceshi', {}, function(data){
+		console.log(data);
+	})
+		})
+</script>
+</html>

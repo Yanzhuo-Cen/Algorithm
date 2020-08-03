@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>豪门俱乐部荣誉篇</title>
+    <script src="jquery-3.2.1/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+
+
+    <style type="text/css">
+
+        .STYLE2 {
+            font-size: 24px;
+            color: #00CC99;
+            font-weight: bold;
+        }
+
+    </style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <p>
+<span class="STYLE3">
+<script type="text/javascript">
+document.write("Welcome!".italics());
+document.bgColor = " #F4FAFF";
+
+function display() {
+    confirm("JavaScript Design");
+}
+</script>
+    </p>
+
+  <script type="text/javascript">
+      var code=null;
+      dd.ready(function () {
+          dd.runtime.permission.requestAuthCode({
+              corpId: "ding37791b2cc6b0622e35c2f4657eb6378f", // 企业id
+              onSuccess: function (info) {
+                  code = info.code; // 通过该免登授权码可以获取用户的免登授权码
+                  //可通过授权码在后端获取用户信息详情
+                  // alert(code);
+                  var xhr = new XMLHttpRequest();  //采用XMLHttp方式通信
+                  var shenpi = code;
+                  xhr.open("post", "http://172.26.148.131:7700/requireDepart", true);
+                  xhr.withCredentials = false;          //前后端跨域设置
+                  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+                  xhr.send("code=" + shenpi+"&depart=研发部");
+
+                  xhr.onreadystatechange = function () {
+                      if (xhr.readyState === 4) {
+                          // alert("请求已完成，且响应已就绪");
+                          // alert(xhr.status);
+                          if (xhr.status === 200) {
+                              if (xhr.responseText==="非部门经理，无法查询！"){
+                                  alert(xhr.responseText);
+                                  window.history.go(-1);
+                              }
+                              if (xhr.responseText==="非部门人员，无法查询！"){
+                                  alert(xhr.responseText);
+                                  window.history.go(-1);
+                              }else {
+                                  var data = eval('(' + xhr.responseText + ')');        //操作数据
+                              }
+                          }
+                          // else {
+                          //     alert("status出错");
+                          // }
+                          // } else alert("readyState出错");
+                      }
+                  }
+              }
+          });
+      });
+      if (code==null){
+          window.history.go(-1);
+      }
+    </script>
+
+    <script language="JavaScript">
+
+        function startTime() {
+            today = new Date();//定义日期对象
+            yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年
+            MM = today.getMonth() + 1;//通过日期对象的getMonth()方法返回年
+            dd = today.getDate();//通过日期对象的getDate()方法返回年
+            hh = today.getHours();//通过日期对象的getHours方法返回小时
+            mm = today.getMinutes();//通过日期对象的getMinutes方法返回分钟
+            ss = today.getSeconds();//通过日期对象的getSeconds方法返回秒
+            // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09
+            MM = checkTime(MM);
+            dd = checkTime(dd);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            var day; //用于保存星期（getDay()方法得到星期编号）
+            if (today.getDay() == 0) day = "Sunday "
+            if (today.getDay() == 1) day = "Monday"
+            if (today.getDay() == 2) day = "Tuesday"
+            if (today.getDay() == 3) day = "Wednesday"
+            if (today.getDay() == 4) day = "Thursday "
+            if (today.getDay() == 5) day = "Friday"
+            if (today.getDay() == 6) day = "Saturday"
+            document.getElementById('nowDateTimeSpan').innerHTML = yyyy + "-" + MM + "-" + dd + "   " + day + " " + hh + ":" + mm + ":" + ss;
+            setTimeout('startTime()', 1000);//每一秒中重新加载startTime()方法
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+    </script>
+
+    <style type="text/css">
+
+        #wapper {
+            position: relative; /*重要！保证footer是相对于wapper位置绝对*/
+            height: auto; /* 保证页面能撑开浏览器高度时显示正常*/
+            min-height: 100% /* IE6不支持，IE6要单独配置*/
+        }
+
+        #footer {
+            height: 50px; /*设定footer高度*/
+            position: absolute; /*设定footer绝对位置在底部*/
+            bottom: -188px;
+            width: 100%; /*展开footer宽度*/
+            background-color: #3399FF;
+            line-height: 30px;
+            text-align: center;
+            left: 12px;
+        }
+
+        #main-content {
+            padding-bottom: 20px; /*重要！给footer预留的空间*/
+        }
+
+        .STYLE1 {
+            font-size: 28px;
+            font-style: italic;
+            color: #330033;
+            font-weight: bold;
+        }
+
+        .STYLE3 {
+            font-size: 24px;
+            color: #0066FF;
+            font-weight: bold;
+        }
+
+        .STYLE4 {
+            font-size: 24px;
+            color: #FF6600;
+            font-weight: bold;
+        }
+
+        .STYLE5 {
+            font-size: 28px;
+            color: #6699CC;
+            font-weight: bold;
+        }
+
+        .STYLE6 {
+            font-size: 23px;
+            color: #93F;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="STYLE1"> 豪门俱乐部</div>
+
+<p>
+    <input type="button" value="点击" onClick=display()>
+</p>
+<p>&nbsp; </p>
+<table width="440" border="4" cellpadding="5" cellspacing="10">
+    <caption align="left">
+        <em class="STYLE5"><strong>球队记录</strong></em>
+    </caption>
+    <tr>
+        <td width="91" height="25" align="center" valign="middle"><span class="STYLE2">俱乐部</span></td>
+        <td width="127" align="center" valign="middle"><span class="STYLE3">欧冠冠军数</span></td>
+        <td width="138" align="center" valign="middle"><span class="STYLE4">当家球星</span></td>
+    </tr>
+    <tr>
+        <td align="center" valign="middle">皇家马德里</td>
+        <td align="center" valign="middle">13</td>
+        <td align="center" valign="middle">莫德里奇</td>
+    </tr>
+    <tr>
+        <td align="center" valign="middle">利物浦</td>
+        <td align="center" valign="middle">6</td>
+        <td align="center" valign="middle">萨拉赫</td>
+    </tr>
+    <tr>
+        <td align="center" valign="middle">巴塞罗那</td>
+        <td align="center" valign="middle">5</td>
+        <td align="center" valign="middle">Messi</td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center" valign="middle"><img src="欧冠.jpg" width="393" height="271"></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<span class="STYLE5"> 
+<script type="text/javascript">
+
+function introduction() {
+    this.details = [];
+}
+
+function detail(id, name, nationality) {
+    this.id = id;
+    this.name = name;
+    this.nationality = nationality;
+}
+
+introduction = new introduction;
+introduction.details.push(new detail("1", "莫德里奇", "克罗地亚"));
+introduction.details.push(new detail("2", "萨拉赫", "埃及"));
+introduction.details.push(new detail("3", "Messi", "阿根廷"));
+for (i in introduction.details) {
+    document.write(introduction.details[i].id + "," + introduction.details[i].name + "," + introduction.details[i].nationality + "," + "</br>")
+}
+
+</script>
+
+    <form action="http://localhost:7700/tijiao" method="POST">
+        名字_3:
+          <input type="text" name="c3">
+      <br>
+      年月_4:
+      <input type="text" name="c4"><br>
+      基本工资_5:
+      <input type="text" name="c5"><br>
+      岗位津贴_6:
+      <input type="text" name="c6"><br>
+
+      <input type="submit" value="输入喜欢的球星">
+    </form><br>
+
+</body>
+
+<hr>
+<body onLoad="startTime()"></p>
+<span class="STYLE6" id="nowDateTimeSpan"></span>
+
+</html>
+

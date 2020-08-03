@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>审批进度查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="HTML5_Full_Version/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+    <!-- c3 Charts -->
+    <link href="HTML5_Full_Version/css/plugins/c3/c3.min.css" rel="stylesheet">
+
+  <link rel="shortcut icon" href="#" />
+<script src="jquery-3.2.1/jquery-3.2.1.min.js" type="text/javascript"></script>
+
+<!--
+<script language="JavaScript">
+alert("Please input password");
+password=" ";
+password=prompt('password','');
+confirm("Are you sure?");
+if (password != 'weida')  
+{alert("密码不正确,无法进入!!");
+window.opener=null; window.open("about:blank","_self").close();} 
+
+else
+{alert("密码正确，欢迎操作！")}
+</script>-->
+
+<style type="text/css">
+<!--
+.STYLE9 {
+	color: #000099;
+	font-size: 18px;
+	font-weight: bold;
+}
+.STYLE12 {color: #FF0000}
+.STYLE13 {
+	font-size: 16px;
+	color: #666666;
+}
+-->
+</style>
+<div class="nav-container">
+            <div id="nav">
+                <div id="nav-button-1" class="banner">首页
+                    <ul>
+                        <li>公司主页</li>
+                    </ul>
+                </div>
+                <div id="nav-button-2" class="banner">新闻中心
+                    <ul>
+                        <li>公司新闻</li>
+                        <li>关联咨询</li>
+                        <li>本地快报</li>
+                    </ul>
+                </div>
+                <div id="nav-button-3" class="banner">关于我们
+                    <ul>
+                        <li>公司简介</li>
+                        <li>发展历程</li>
+                        <li>企业文化</li>
+                        <li>荣誉资源</li>
+                    </ul>
+                </div>
+                <div id="nav-button-4" class="banner">产品展示
+                    <ul>
+                        <li>投加系统</li>
+                        <li>次氯酸钠发生器系统</li>
+                        <li>真空引水系统</li>
+                        <li>一体化净水，污水处理系统</li>
+                    </ul>
+                </div>
+              <div id="nav-button-5" class="banner">其他
+          <ul>
+                        <li>投资运营</li>
+                        <li>产品案例</li>
+                        <li>客户评价</li>
+                        <li>联系我们</li>
+                    </ul>
+                </div>
+            </div>
+</div>
+
+ 
+<script language="JavaScript"> 
+
+ function startTime()   
+            {   
+                today=new Date();//定义日期对象   
+                yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年    
+                MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回年    
+                dd = today.getDate();//通过日期对象的getDate()方法返回年     
+                hh=today.getHours();//通过日期对象的getHours方法返回小时   
+                mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟   
+                ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒   
+                // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09   
+                MM=checkTime(MM);
+                dd=checkTime(dd);
+                mm=checkTime(mm);
+                ss=checkTime(ss);
+                var day; //用于保存星期（getDay()方法得到星期编号）
+                if(today.getDay()==0)   day   =   "Sunday " 
+                if(today.getDay()==1)   day   =   "Monday" 
+                if(today.getDay()==2)   day   =   "Tuesday" 
+                if(today.getDay()==3)   day   =   "Wednesday" 
+                if(today.getDay()==4)   day   =   "Thursday " 
+                if(today.getDay()==5)   day   =   "Friday" 
+                if(today.getDay()==6)   day   =   "Saturday" 
+                document.getElementById('nowDateTimeSpan').innerHTML=yyyy+"-"+MM +"-"+ dd +"   " + day +" " + hh+":"+mm+":"+ss;
+				
+                setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法 
+            }   
+             
+            function checkTime(i)   
+            {   
+                if (i<10){
+                    i="0" + i;
+                }   
+                  return i;
+            }
+</script>
+
+
+<script type="text/javascript">
+
+var code;
+//
+//    dd.ready(function() {
+//      dd.runtime.permission.requestAuthCode({
+//        corpId: "ding37791b2cc6b0622e35c2f4657eb6378f", // 企业id
+//        onSuccess: function (info) {
+//                code = info.code // 通过该免登授权码可以获取用户身份
+//
+//        }});
+//     });
+				
+ function submit(){
+          //alert(code);
+            var xhr=new XMLHttpRequest();
+			var shenpi = code;
+			var n = 5;
+			
+            xhr.open("post","http://localhost:8081/callback",true);
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
+			xhr.send("n=" +n);
+            
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+			   //alert(xhr.responseText);
+			   //var data=xhr.responseText;
+			    //var data1=JSON.stringify(xhr.responseText);
+				//alert(data1);
+	            var data = eval('(' + xhr.responseText + ')');
+				console.log(data);
+				for(var j=0; j<data.length; j++)
+				{
+				
+			    var div=document.createElement("div");//创建一个DIV
+				   div.style.width="1000px";
+				   div.style.height="0 auto";
+				   div.style.background="#FFFFFF";
+				   div.style.textAlign = "center";
+				   div.style.margin="0 auto";
+				   div.style.color="#FF0000";
+				   
+				   div.innerHTML +='<br>'+data[j].process_instance.title+'<br>';
+				   document.body.appendChild(div); 
+
+				
+				var div=document.createElement("div");//创建一个DIV
+				   div.style.width="350px";
+				   div.style.height="auto";
+				   div.style.background="#9DD79D";
+				   div.style.textAlign = "left";
+				   div.style.margin="0 auto";
+				   
+                   div.innerHTML +='<br>'+"发起人部门编号:"+data[j].process_instance.originator_dept_id+'<br>';
+				   div.innerHTML +="发起人部门:"+data[j].process_instance.originator_dept_name+'<br>';	   
+				   div.innerHTML +="发起人:"+data[j].process_instance.originator_userid+'<br>';	
+				   //div.innerHTML +="审批结果:"+data.status+'<br>';	
+				   if ( data[j].process_instance.status=="COMPLETED")
+				   {div.innerHTML +="审批状态:已完成"+'<br>';	}
+				   else if ( data[j].process_instance.status=="RUNNING")
+				   {div.innerHTML +="审批状态:处理中"+'<br>';	}
+				   else {div.innerHTML +="审批状态:已撤销"+'<br>';} //设置div里面的内容
+                   document.body.appendChild(div); 
+				   
+				 var div=document.createElement("div");//创建一个空白DIV
+				    div.style.height="20px";
+					div.style.width="90px";
+					div.style.margin="0 auto";
+					div.style.textAlign = "center";
+					div.innerHTML ='&nbsp';
+					document.body.appendChild(div); 
+				   
+				for (var i=0; i<data[j].process_instance.tasks.length; i++) 
+				{
+				  /*var div=document.createElement("div");//创建一个空白DIV
+				    div.style.height="20px";
+					div.style.margin="0 auto";
+					div.style.textAlign = "center";
+					div.innerHTML ='&nbsp';
+					document.body.appendChild(div); */
+					
+				  var div=document.createElement("div");//创建一个DIV
+				   div.style.width="300px";
+				   div.style.height="auto";
+				   div.style.float="left";
+				   div.style.textAlign = "left";
+				   div.style.margin="0 auto";
+				   
+                   div.innerHTML +='<br>'+"处理人:"+data[j].process_instance.tasks[i].userid+'<br>';
+				   div.innerHTML +="任务编号:"+data[j].process_instance.tasks[i].taskid+'<br>';
+				   if ( data[j].process_instance.tasks[i].task_status=="COMPLETED")
+				   {div.innerHTML +="处理状态:已完成"+'<br>';	}
+				   else if ( data[j].process_instance.tasks[i].task_status=="RUNNING")
+				   {div.innerHTML +="处理状态:处理中"+'<br>';	}
+				   else {div.innerHTML +="处理状态:已撤销"+'<br>';}
+				   if ( data[j].process_instance.tasks[i].task_result=="AGREE")
+				   {div.innerHTML +="处理结果:已同意"+'<br>';	}
+				   else if ( data[j].process_instance.tasks[i].task_result=="REDIRECTED")
+				   {div.innerHTML +="处理结果:已重新配置"+'<br>';	}
+				   else {div.innerHTML +="处理结果:暂无"+'<br>';}
+				   div.innerHTML +="任务创建时间:"+data[j].process_instance.tasks[i].create_time+'<br>';	
+				   div.innerHTML +="任务完成时间:"+data[j].process_instance.tasks[i].finish_time+'<br>';    //设置div里面的内容
+                   document.body.appendChild(div); //主要加上这句，把新建的DIV加到页面上
+				   
+				   if( data[j].process_instance.tasks[i].task_status=="COMPLETED")
+				     { div.style.background="#B4F4F8";}
+				   else
+				     { div.style.background="#CCCCCC";}
+					
+				   if( i<data[j].process_instance.tasks.length-1)
+				   {
+					var div=document.createElement("div");//创建一个箭头DIV
+				    div.style.height="140px";
+					div.style.width="95px";
+					div.style.margin="0 auto";
+					div.style.marginTop="60px";
+					div.style.float="left";
+					div.style.textAlign = "center";
+					div.innerHTML ='<img src="jian.jpg">';
+					document.body.appendChild(div); 
+				   }
+				     if( i==data[j].process_instance.tasks.length-1)
+				   {
+					var div=document.createElement("div");//创建一个空白DIV
+				    div.style.height="400px";
+					div.style.width="1000px";
+					div.style.margin="0 auto";
+					div.style.textAlign = "center";
+					div.innerHTML ='<br>'+'&nbsp';
+					document.body.appendChild(div); 
+				   }
+                   }
+				 }
+                 //}
+           //s += '</table>'
+           //$('#res').html(data);
+		   //alert(xhr.responseText);
+            
+                     }
+                   }
+                }			  
+			//setTimeout('GetData()',2000);//每2秒重新加载GetData()方法 
+        };
+
+</script>
+
+    <script src="HTML5_Full_Version/js/bootstrap.js"></script>
+
+    <!-- d3 and c3 charts -->
+    <script src="HTML5_Full_Version/js/plugins/d3/d3.min.js"></script>
+    <script src="HTML5_Full_Version/js/plugins/c3/c3.min.js"></script>
+
+
+<style type="text/css">
+
+          * {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            #nav {
+                width: 800px;
+                background-color: #B6B0FB;
+				font-size: 24px;
+                height: 60px;
+                /*border-radius: 10px;*/
+                position: relative;
+                margin: 0px auto;
+                top: 0px;
+            }
+            
+            .nav-container {
+                width: 100%;
+                height: 40px;
+                position:  relative;
+            }
+            
+            .banner {
+                float: left;
+                text-align: center;
+                height: 40px;
+                width: 20%;
+                line-height: 40px;
+            }
+            
+            .banner:hover {
+                background-color: #00BFFF;
+                cursor: pointer;
+            }
+            
+            div ul {
+                list-style: none;
+                /*display: none;*/
+                background-color: #E0DFFD;
+                overflow: hidden;
+                /*模拟height:auto时候的情况*/                
+                max-height: 0px;
+                transition: max-height 0.3s;
+                /*多浏览器支持*/
+                -moz-transition: height 1s;
+                -webkit-transition: height 1s;
+                -o-transition: height 1s;
+            }
+            
+            .banner:hover ul {
+                /*display: block;*/
+                width: 100%;
+                max-height: 160px;
+            }
+            
+            div ul li {
+                overflow: hidden;
+            }
+            
+            div ul li:hover {
+                background-color: red;
+            }
+   
+  
+  #bottom{
+    width: 100%;
+    height: 500px;
+    border-top: 6px solid #0059b5;
+    background-color:  #FFF;
+   }
+   .bottom_content{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+.STYLE6 {
+	font-size: 23px;
+	color: #93F;
+	font-weight: bold;
+}
+.STYLE10 {
+	color: #0000CC;
+	font-size: 18px;
+}
+.STYLE14 {
+	font-size: 18px;
+	color: #333333;
+}
+</style>
+</head>
+
+<body>
+
+  <p><img src="weida.jpg" width="224" height="54" text-align="left"></p>
+
+<hr>
+<body onload="startTime()"></p>
+<span class="STYLE6" id="nowDateTimeSpan"></span>
+<hr>
+<!--
+<form method="POST">
+      <span class="STYLE11">输入审批实例ID</span>:     
+      <input type="text" name="审批实例ID">
+      &nbsp; &nbsp; &nbsp;-->
+      
+     <!--<label><span class="STYLE12">输入姓名：</span>
+     <input type="text" name="sp" id="sp" value="javascript: alert();">
+     </label> -->
+     <span class="STYLE12">查询个人审批及奖励情况&nbsp;&nbsp;</span><input name="提交" class="STYLE10" type="button" onClick="submit()" value="确定">
+    
+    <div align="center" id="wen" >&nbsp;</div>
+<div align="center" class="STYLE9" >显示审批进展：</div>
+
+</body>
+
+</html>
+

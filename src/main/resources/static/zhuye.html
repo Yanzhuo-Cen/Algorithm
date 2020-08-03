@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>江苏维达</title>
+  
+<script language="JavaScript">
+
+<!--
+function startTime()   
+            {   
+                var today=new Date();//定义日期对象   
+                var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年    
+                var MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回年    
+                var dd = today.getDate();//通过日期对象的getDate()方法返回年     
+                var hh=today.getHours();//通过日期对象的getHours方法返回小时   
+                var mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟   
+                var ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒   
+                // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09   
+                MM=checkTime(MM);
+                dd=checkTime(dd);
+                mm=checkTime(mm);   
+                ss=checkTime(ss);    
+                var day; //用于保存星期（getDay()方法得到星期编号）
+                if(today.getDay()==0)   day   =   "星期日 " 
+                if(today.getDay()==1)   day   =   "星期一 " 
+                if(today.getDay()==2)   day   =   "星期二 " 
+                if(today.getDay()==3)   day   =   "星期三 " 
+                if(today.getDay()==4)   day   =   "星期四 " 
+                if(today.getDay()==5)   day   =   "星期五 " 
+                if(today.getDay()==6)   day   =   "星期六 " 
+                document.getElementById('nowDateTimeSpan').innerHTML=yyyy+"-"+MM +"-"+ dd +" " + hh+":"+mm+":"+ss+"   " + day;   
+                setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法 
+            }   
+             
+            function checkTime(i)   
+            {   
+                if (i<10){
+                    i="0" + i;
+                }   
+                  return i;
+            }
+
+//-->
+</script>
+
+<style type="text/css">
+#top{
+    width: 1000px;
+    height: 105px;
+    margin: 0 auto;
+    background: url(../img/logo.jpg) no-repeat left 18px;
+}
+.company_infor{
+    width: 800px;
+    height: 31px;
+    padding-top: 23px;
+}
+
+.company_infor_public{
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+    display: block;
+    text-align: right;
+    color: #909090; 
+}
+.home_bg{
+    background: url(../img/home_bg.jpg) no-repeat 8px 0px;
+}
+.collect_bg{
+    background: url(../img/collect_bg.jpg) no-repeat 8px 0px;
+}
+
+.tel{
+    height: 20px;
+    line-height: 20px;
+    color: #909090; 
+}
+
+.tel >font{
+    color: #ff0000;
+    font-size: 20px;
+    font-family: arial;
+}
+.nav{
+    width: 800px;
+    height: 40px;
+}
+.nav ul li{
+    width: 84px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin-right: 6px;
+    font-family: "微软雅黑";    
+    text-align: center;/*行家一出手，便知有没有！*/
+}
+#contact{
+    margin-right: 0;
+    width: 64px;
+    float: right;
+    text-align: right;
+}
+
+.nav ul li a{
+    color: black;
+}
+.nav ul li a :hover{
+    display: block;
+    background-color: #ff0000;
+    color: white;
+}
+/*banner图片横幅*/
+#banner{
+    width: 100%;
+    height: 436px;
+    border-top: 6px solid #0059b5;
+    background-color: #017ab2;
+}
+.banner_content{
+    width: 1000px;
+    height: 436px;
+    margin: 0 auto;
+}
+/*service员源企业服务*/
+#service{
+    width: 1000px;
+    height: 320px;
+    margin: 0 auto;
+}
+#company_title{
+    width: 1000px;
+    height: 120px;
+    margin: 0 auto;
+    /*border: 1px red solid;*/
+}
+.service_public{
+    width: 255px;
+    height: 55px;
+    line-height: 19px;
+    margin-top: 146px;
+}
+.training_intro{
+    width: 255px;
+    margin-left: 13px;
+    margin-right: 143px;
+    line-height: 26px;
+    font-size: 12px;
+    color:#4C4C4C ;
+}
+.title1{
+    width: 235px;height: 80px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.picture1{
+    background: url(beijing4.jpg) no-repeat;
+    width: 271px;
+    height: 312px;
+}
+.picture2{
+    background: url(beijing9.jpg) no-repeat;
+    width: 271px;
+    height: 312px;
+}
+.picture3{
+    background: url(beijing4.jpg) no-repeat;
+    width: 271px;
+    height: 312px;
+}
+h4{
+    font-family: "宋体";
+    font-size: 15px;
+    margin-left:100px ;
+    margin-top: 16px;
+}
+
+.i2width{
+    margin-left: 96px;
+}
+#service_picture{
+    height: 400px;
+    width: 1000px;
+}
+
+/*case员源客户*/
+/*1*/
+#case{
+    width: 1000px;
+    height: 508px;
+    margin: 0 auto;
+
+}
+.picture4{
+    background: url(../img/casename.png) no-repeat;
+    width: 313px;
+    height: 394px;
+}
+
+.title2{
+    width: 235px;height: 80px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+#ClassCase{width: 1000px;height: 387px;}
+
+.i3width{
+    margin-left: 30px;
+}
+.custom_case_pub{
+    width: 271px;
+    height: 321px;
+    margin-left: 15px;
+    margin-top: 30px;
+}
+.custom_case_content > h3{
+    height: 21px;
+    border-bottom: 1px solid #c2c8cd;
+    width: 272px;
+    font-size: 14px;
+    color: #64b9fa;
+    margin-top: 27px;
+    margin-left: 21px;
+}
+.custom_case_content > img{
+    display: block;
+    margin-top: 22px;
+    margin-left: 21px;
+    margin-bottom: 24px;
+}
+.custom_case_content >p{
+    height:78px;
+    width:272px;
+    margin-left: 21px;
+    line-height: 22px;
+    margin-bottom: 26px;
+    font-family: "宋体";
+    font-size: 12px;
+}
+.more{
+    width: 74px;
+    height: 24px;
+    display: block;
+    float: right;
+    margin-right: 8px;
+}
+
+/*info员源新闻*/
+#info-max{
+    width: 1000px;
+    height: 433px;
+    margin: 0 auto;
+    margin-top: 5px;
+    /*border: 1px green solid;*/
+}
+#info_title{
+    width: 1000px;
+    height: 67px;
+    /*border: 1px gold solid;*/
+}
+.info_ltitle{
+    width: 435px;
+    height: 67px;
+    margin-top: -43px;
+}
+.info_rtitle{
+    width: 435px;
+    height: 67px;
+    float: right;
+    margin-top: -156px;
+}
+.div_info_h3{
+    width: 200px;
+    height: 19px;
+    display: block;
+    margin-top: 90px;
+}
+.div_info_h3 h3{
+    font-family: "宋体";
+    font-size: 18px;
+}
+.div_info_h3  span{
+    color: red;
+}
+.info_ltitle_right{
+    width: 63px;
+    height: 18px;
+    text-align: right;
+    float: right;
+    margin-right: ;
+    margin-top: -18px;
+}
+#info_left{
+    width: 435px;
+    height:362px;
+    /*border: 1px blue solid;*/
+    display: block;
+    margin-top: -45px;
+    float: left;
+}
+#info_left1{
+    width: 435px;
+    height: 164px;
+    border-bottom: 1px #8D8D8D solid;
+}
+.div_info_img{
+    width: 174px;
+    height: 115px;
+    float: left;
+    margin-top: 35px;
+}
+.info_img_right{
+    width: 247px;
+    height: 116px;
+    float: right;
+    margin-top: 49px;
+}
+.info_img_right h2{
+    font-family: "宋体";
+    font-size: 12px;
+    color: #3E3E3E;
+    margin-top: -18px;
+    margin-bottom: 5px;
+}
+.info_img_right p{
+    font-family: "宋体";
+    line-height: 24px;
+    font-size: 13px;
+    color: #3E3E3E;
+}
+#info_left2 ul li a{
+    color: #3E3E3E;
+    font-size: 12px;
+    font-family: "宋体";
+    line-height: 33px;
+    margin-top: -10px;
+    margin-left: 15px;  
+}
+#info_left2 ul li {
+    background: url(../img/list.png) no-repeat left 13px;
+}
+#info_right{
+    width: 435px;
+    height: 347px;
+    float: right;
+    margin-top: -30px;
+/*  border: 1px gainsboro solid;*/
+}
+#div_table table{
+    font-family: "宋体";
+    font-size: 12px;
+    text-align: center;
+    margin-top: 18px;
+    color: #3E3E3E;
+}
+td{
+    width: 109px;
+    height: 12px;
+    margin-right: 18px;
+}
+.odd{
+    background-color: #F0F0F0;
+}
+.even{
+    background-color: #FAFAFA;
+}
+
+/*合作企业*/
+#test-max{
+    width: 1000px;
+    height: 430px;
+    /*border: 1px palevioletred solid;*/
+    margin: 0 auto;
+}
+#text-title{
+    width: 100%;
+    height: 77px;
+    /*border: 1px deeppink solid;*/
+}
+.partner{
+    width: 325px;
+    height: 28px;
+    float: left;
+    margin-top: 18px;
+}
+.text-content1{
+    width: 1000px;
+    height: 165px;
+    /*border: 1px yellow solid;*/
+}
+.text-lcontent{
+    width: 181px;
+    height: 165px;
+    text-align: center;
+    display: block;
+    margin-right: 19px;
+}
+.text-lcontent img{
+    margin-bottom: 13px;
+}
+.text-lcontent  span{
+    font-family: "宋体";
+    font-size: 12px;
+    width:179px ;
+    height: 13px;
+}
+.text-lcontent1{
+    width: 181px;
+    height: 165px;
+    text-align: center;
+    display: block;
+    margin-right: 6px;
+}
+.text-lcontent1 img{
+    margin-bottom: 13px;
+}
+.text-lcontent1  span{
+    font-family: "宋体";
+    font-size: 12px;
+    width:179px ;
+    height: 13px;
+}
+.text-content2{
+    width: 1000px;
+    height: 185px;
+}
+#friendlink{
+    width: 1000px;
+    height: 55px;
+    margin: 0 auto;
+    background: url(../img/flink.png) no-repeat left;
+    border: 1px white solid;
+}
+#links{
+    width: 1000px;
+    height: 15px;
+    margin-top: 25px;
+    margin-left: 70px;
+    border: 1px white solid;
+}
+#links ul li{
+    float: left;
+    font-size: 12px;
+    font-family: "宋体";
+    margin-right: 10px;
+    width: 150px;
+    text-align: center;
+    border-right: 1px black solid;
+}
+#links ul li a{
+    color: black;
+}
+
+/*底部导航*/
+#footer_nav{
+    width: 100%;
+    height: 38px;
+    background: url(../img/footer_nav.png) no-repeat center top #002C5A;
+}
+#footer_bootme{
+    width: 100%;
+    height: 288px;
+    background: url(../img/footer_bottmer.png) no-repeat center  #0059B5;
+}
+#bootme_nav{
+    width: 822px;
+    height: 37px;
+    margin: 0 auto;
+    /*border: 1px red solid;*/
+}
+#bootme_nav ul li{
+    color: #FFFFFF;
+    width: 84px;
+    height: 40px;
+    line-height: 30px;
+    font-family: "微软雅黑";    
+    font-size: 13px;
+    text-align: center;/*行家一出手，便知有没有！*/
+    float: left;
+    margin-right: 5px;
+}
+#bootme_nav ul li a{
+    color: white;
+}
+#bootme1{
+    width: 1000px;
+    height: 84px;
+    margin: 0 auto;
+    border: 1px #0059B5 solid;
+}
+.bootme_intro{
+    width: 1000px;
+    margin-left: 10px;
+    margin-top:25px ;
+    line-height: 1px;
+    font-size: 12px;
+    font-family: "宋体";
+    color:white ;
+}
+#bootme2{
+    width: 1000px;
+    height: 204px;
+    margin: 0 auto;
+    /*border: 1px red solid;*/
+}
+#saosao{
+    width: 130px;
+    height: 166px;
+    margin-left: 222px;
+    text-align: center;
+    color: white;
+}
+#lianxi{
+    width: 291px;
+    height: 133px;
+    float: right;
+    margin-top: -167px;
+    margin-right: 241px;
+}
+#beian{
+    width: 693px;
+    height: 24px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-family: "宋体";
+    color: white;
+}
+.STYLE14 {
+	color:   #999;
+	font-size: 13px;
+	font-weight: bold;
+}
+.STYLE15 {
+	color:    #009;
+	font-size: 19px;
+	font-weight: bold;
+}
+.STYLE16 {
+	color:  #009;
+	font-size: 24px;
+	font-weight: bold;
+}
+.STYLE17 {
+	color:  #369;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+html,body,head,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,img{
+    margin: 0;
+    padding: 0;
+}
+
+form,input,select,textarea{margin: 0;padding: 0;}
+
+img{vertical-align: middle;}
+
+li{list-style: none;}
+
+a{text-decoration: none;}
+
+.clear{clear: both;font-size: 0px;}
+
+.left{float: left;}
+
+.right{float: right;}
+
+</style>
+</head>
+
+<body>
+
+        <!--头部-->
+        <div id="top">
+            <div class="company_infor center">
+                <span class="company_infor_public home_bg left">设置主页</span>
+      <span class="company_infor_public collect_bg left">收藏本站&nbsp;&nbsp;&nbsp;</span>
+      <span  class="tel left">服务电话: <font>XXXX-XXXXXXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span>
+  <body onload="startTime()"><span class="STYLE17 " id="nowDateTimeSpan"></span>
+            </div>
+            <div class="nav center">
+                <ul>
+                    <li><a href="#">公司首页</a></li>
+                    <li><a href="#">关于维达</a></li>
+                    <li><a href="#">人才通道</a></li>
+                    <li><a href="#">技能培训</a></li>
+                    <li><a href="#">劳务派遣</a></li>
+                    <li><a href="#">企业服务</a></li>
+                    <li><a href="#">产品详解</a></li>
+                    <li><a href="index.html">奖惩系统</a></li>
+                    <li id="contact"><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--banner边幅-->
+        <div id="banner">
+            <div class="banner_content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="fsq1.jpg" width="879" height="436" align="middle" /></div>      
+        </div>
+
+        <!--service企业服务-->
+        <div id="service">
+            <div id="company_title">
+                <div class="title1">
+                  <h4 align="center"><span class="STYLE14">点击进入查看》》&nbsp;&nbsp;</span><a href="reg.html" class="STYLE15" >企业资料</a></h4>
+                  <p align="center">&nbsp;</p>
+                  <p align="center">包含外购汇总各表单在内的企业内部资料</p>
+              </div>
+            </div>
+
+            <div id="service_picture">
+                <div class="picture1 left">
+                    <h4 align="center">企业培训</h4>
+                    <div class="service_public">
+                      <p class="training_intro">为企业经营诊断整合、体系建立、流程梳理、</p>
+                        <p class="training_intro">各种类型的员工培训、代理企业新技术项目</p>
+                  </div>
+              </div>
+
+                <div class="picture2 left i2width">
+                    <h4 align="center">劳务派遣</h4>
+                    <div class="service_public">
+                      <p class="training_intro">为企业提供劳务用工派遣（临时工、小时工、</p>
+                        <p class="training_intro">普工、固定工、承包生产线、短期项目承包、</p>
+                        <p class="training_intro">...</p>
+                  </div>
+              </div>
+
+                <div class="picture3 right">
+                    <h4 align="center">企业服务</h4>
+                    <div class="service_public">
+                      <p class="training_intro">为企业提供基、中、高端技工，基、中、高</p>
+                        <p class="training_intro">端管理人才和人才测评</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        <!--case客户案例-->
+        <div id="case">
+          <div id="company_title">
+            <div class="title2">
+              <div align="center" class="STYLE16">
+                <p>&nbsp;</p>
+                <p><strong>维达产品展示</strong></p>
+              </div>
+            </div>
+          </div>
+
+            <div id="ClassCase">
+            <div class="picture4 left">
+                    <div class="custom_case_content">
+                        <h3 align="center">产品展示1</h3>
+                        <img src="fsq3.jpg" width="276" height="231"/>
+                      <p>......次氯酸钠发生器</p>                    
+                  </div>
+                    <a href="#"><img class="more" src="beijing1.jpg" width="74" height="24"/></a>
+                </div>
+
+            <div class="picture4 left i3width">
+                    <div class="custom_case_content">
+                        <h3 align="center">产品展示2</h3>
+                        <img src="fsq2.jpg" width="292" height="205"/>
+                      <p>......次氯酸钠发生器</p>                    
+                  </div>
+                    <a href="#"><img class="more" src="beijing2.jpg" width="74" height="24"/></a>
+                </div>
+
+            <div class="picture4 right">
+                    <div class="custom_case_content">
+                      <h3 align="center">产品展示3</h3>
+                        <img src="fsq4.jpg" width="286" height="200"/>
+                      <p>......次氯酸钠发生器</p>                    
+                  </div>
+                    <a href="#"><img class="more" src="beijing3.jpg" width="74" height="24"/></a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!--info员源新闻-->
+        <div id="info-max">
+            <div id="info_title">
+                <div class="info_ltitle">
+                    <div class="div_info_h3">
+                    <h3>维达新闻&nbsp;<span>HOT NEW</span></h3> </div>              
+                    <div class="info_ltitle_right">更多</div>
+                </div>
+
+                <div class="info_rtitle">
+                    <div class="div_info_h3">
+                    <h3>维达最新招聘&nbsp;<span>New Job</span></h3>   </div>              
+                    <div class="info_ltitle_right">更多<img src="beijing3.jpg" width="74" height="24"/></div>
+                </div>
+            </div>
+
+            <div id="info_content">
+                <div id="info_left">
+                    <div id="info_left1">
+                        <div class="div_info_img"><img src="beijing9.jpg"/></div>
+                        <div class="info_img_right">
+                            <h2>如今慢慢趋于转向"劳务外包"</h2>
+                            <p>"目前这几年下来暂不招工人，许多都在天然减员，能省下公司一笔成本，下一步还将经过扩展外包的方法进一步削减出产一线的用工"，马良广接受采访...</p>
+                        </div>
+                    </div>
+                    <div id="info_left2">
+                        <ul>
+                            <li><a href="#"><span>如今慢慢趋于转向"劳务外包"</span></a></li>
+                            <li><a href="#"><span>劳务派遣行业门槛将提高</span></a></li>
+                            <li><a href="#"><span>农民工司令张全收：珠三角已不是人力大本营</span></a></li>
+                            <li><a href="#"><span>2012新法下劳务派遣形式分析与派遣员工管理高级研讨会</span></a></li>
+                            <li><a href="#"><span>掘金中国制造：工段外包的秘密</span></a></li>
+                            <li><a href="#"><span>全国工会组织劳务派遣工入会工作现场经验交流会议在沈阳召开</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="info_right">
+                    <div id="div_table">
+                    <table cellpadding="9" border="0" cellspacing="0">
+                        <tr class="odd"><td class="td">职位名称</td><td>工作地点</td><td>招聘数量</td><td>薪资</td><td>结束时间</td>
+                        </tr>
+                        <tr class="even"><td>营销总监</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="odd"><td>技术总监</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="even"><td>市场经理</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="odd"><td>硬件工程师</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="even"><td>软件工程师</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="odd"><td>测试工程师</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="even"><td>技术支持</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="odd"><td>项目经理</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                        <tr class="even"><td>金融副总理</td><td>XX</td>
+                            <td>1</td><td>面议</td><td>XXXX-XX-XX</td>
+                        </tr>
+                    </table></div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div id="test-max">
+            <div id="text-title">
+                <div class="div_info_h3 partner">
+                    <h3>员源合作企业&nbsp;<span>Customer testimonials</span></h3> </div>  
+            </div>
+            <div id="text-content">
+                <div class="text-content1">
+                    <div class="text-lcontent left"><img src="img/Coke.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/meike.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/quechao.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/al.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent1 right "><img src="img/kaiqi.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                </div>
+
+                <div class="text-content2">
+                    <div class="text-lcontent left"><img src="img/Coke.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/meike.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/quechao.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent left"><img src="img/al.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                    <div class="text-lcontent1 right "><img src="img/kaiqi.png"/><span>厦门太古可口可乐饮料有限公司</span></div>
+                </div>
+            </div>
+        </div>
+
+ 
+        <div id="friendlink">
+            <div id="links">
+                <!--<table>
+                    <tr>
+                        <td><a href="#">21世纪人才网</a></td>
+                        <td><a href="#">上海总工会</a></td>
+                        <td><a href="#">上海人力资源和社会保障局</a></td>
+                        <td><a href="#">中国人力资源网</a></td>
+                    </tr>
+               
+                <ul >
+                    <li><a href="#">21世纪人才网</a></li>
+                    <li><a href="#">上海总工会</a></li>
+                    <li id="big"><a href="#">上海人力资源和社会保障局</a></li>
+                    <li><a href="#">中国人力资源网</a></li>
+                </ul>
+
+            </div>
+        </div>-->
+        <!--foot底部-->
+        <div id="footer_nav" >
+            <div id="bootme_nav">
+                <ul>
+                    <li><a href="#">公司首页</a></li>
+                    <li><a href="#">关于维达</a></li>
+                    <li><a href="#">人才通道</a></li>
+                    <li><a href="#">技能培训</a></li>
+                    <li><a href="#">劳务派遣</a></li>
+                    <li><a href="#">企业服务</a></li>
+                    <li><a href="#">产品详解</a></li>
+                    <li><a href="#">新闻资讯</a></li>
+                    <li id="contact"><a href="#">联系我们</a></li>
+                </ul></div>
+        </div>
+
+        <div id="footer_bootme" >
+            <div id="bootme1">
+                <p class="bootme_intro">江苏维达：培训、人事代理、项目申报、劳务派遣、企业咨询、验厂辅导等服务；涉及电子、机械、食品、饮料、化妆、化纤、工艺、卫浴、运动、保健、服装、鞋帽、</p>
+                <p class="bootme_intro">轻纺、印刷、印花、商贸、物流等多种行业的大、中、小企业服务，赢得了上百家知名企业的欢迎和信赖，已拥有较多的集团、大、中、小企业成为我们长期合作的伙伴。</p>             
+            </div>
+
+            <div id="bootme2">
+                <div id="saosao"><span>扫一扫</span> <img src="beijing2.gif" width="220" height="123"/>
+                </div>
+                <div id="lianxi"><span class="STYLE15">敬请期待！</span> 
+                  <img src="beijing1.jpg" width="220" height="123"/>
+                </div>
+                <div id="beian">
+Copyright © 2011 上海员源人力资源服务有限公司  版权所有  复制必究 ICP许可证号:沪ICP备11909206号-1  技术支持：
+              </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+
+！

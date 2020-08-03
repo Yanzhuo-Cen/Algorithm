@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.algorithm.dao.PhotoMapper">
+
+    <resultMap id="PhotoResultMap" type="com.algorithm.entity.Photo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="fileName" column="fileName" jdbcType="VARCHAR"/>
+        <result property="filePath" column="filePath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getByName" resultMap="PhotoResultMap">
+        SELECT *
+        FROM zhongjie.photo
+        WHERE name = #{name}
+    </select>
+
+    <select id="getPageBanner" resultMap="PhotoResultMap">
+        SELECT *
+        FROM zhongjie.photo
+        WHERE name = #{name} limit #{page},#{size}
+    </select>
+
+    <select id="getByBanner" resultMap="PhotoResultMap">
+        SELECT *
+        FROM zhongjie.photo
+        WHERE name = #{name}
+    </select>
+
+    <select id="getByFileName" resultMap="PhotoResultMap">
+        SELECT *
+        FROM zhongjie.photo
+        WHERE fileName = #{fileName}
+    </select>
+
+    <delete id="delete">
+        DELETE
+        FROM zhongjie.photo
+        where ID = #{id}
+    </delete>
+
+    <insert id="insert">
+        INSERT INTO zhongjie.photo(name, fileName, filePath)
+        values (#{name}, #{fileName}, #{filePath})
+    </insert>
+
+    <update id="modify">
+        update zhongjie.photo
+        set name=#{name},
+            fileName=#{fileName},
+            filePath=#{filePath}
+        where id = #{id}
+    </update>
+
+</mapper>

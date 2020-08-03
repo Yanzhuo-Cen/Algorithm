@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.algorithm.dao.UserDao">
+    <resultMap id="UserResultMap" type="com.algorithm.entity.User">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="LastName" jdbcType="VARCHAR"/>
+        <result property="password" column="psword" jdbcType="VARCHAR"/>
+        <result property="states" column="states" jdbcType="VARCHAR"/>
+        <result property="date" column="date" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getByName" resultMap="UserResultMap">
+        SELECT *
+        FROM test.user
+        WHERE LastName = #{name}
+#         limit 1,3
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into test.user(LastName, psword, states)
+        values (#{name}, #{password}, #{states})
+    </insert>
+
+    <update id="update" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update test.user
+        set LastName=#{name},
+            psword=#{password},
+            states=#{states}
+        where LastName = #{name}
+    </update>
+
+</mapper>
