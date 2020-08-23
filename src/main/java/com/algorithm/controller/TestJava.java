@@ -4,6 +4,7 @@ import com.algorithm.dao.PhotoMapper;
 import com.algorithm.dao.UserDao;
 import com.algorithm.entity.*;
 import com.algorithm.service.*;
+import com.algorithm.service.Ipml.Algorithm;
 import com.alibaba.druid.sql.visitor.functions.Char;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.text.StrBuilder;
@@ -32,8 +33,6 @@ public class TestJava {
 
     @Resource           //按名称注入，实现自动注入所依赖的Bean,不需要 new 的方式显示创建bean实例
     private RestTemplate restTemplate;
-    @Resource
-    private AlgorithmService algorithmService;
     @Resource
     private PhotoService photoService;
     @Resource
@@ -67,129 +66,96 @@ public class TestJava {
 //        a4.right = a8;
 //        a2.left = a5;
 //        a2.right = a6;
-        int n = 2;
-        int m = 1;
-        int t = 4;
-        int[][] num1 = new int[][]{{3,1}, {2,1}};
-        int[][] num2 = new int[][]{{1,2}};
+//        int[][] intervals = new int[][]{{1,4},{9,12},{0,5},{3,6},{7,8},{2,6}};
+        ListNode head1 = new ListNode(3);
+//        head1.next = new ListNode(4);
+//        head1.next.next = new ListNode(5);
+        ListNode head2 = new ListNode(1);
+        head2.next = new ListNode(3);
+        head2.next.next = new ListNode(6);
+        ListNode head3 = new ListNode(2);
+        head3.next = new ListNode(6);
+        ListNode[] lists = new ListNode[3];
+        lists[0] = head1;
+        lists[1] = head2;
+        lists[2] = head3;
         long startTime = System.nanoTime();
-        if (t == 0) {
-            System.out.println(0);
-        } else {
-            int res = Integer.MAX_VALUE;
-            boolean result = false;
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    if (num1[i][1] >= t) {
-                        result = true;
-                        res = Math.min(res, num1[i][1]);
-                        break;
-                    } else if (num2[j][1] >= t) {
-                        result = true;
-                        res = Math.min(res,num2[j][1]);
-                    } else if (num1[i][1] + num2[j][1] >= t) {
-                        result = true;
-                        res = Math.min(res, (num1[i][0] + num2[j][0]));
+        Algorithm alg = new Algorithm();
+        ListNode head = lists[0];
+        int i=1;
+        while (head==null && i<lists.length) {
+            head=lists[i];
+            i++;
+        }
+        if(head==null){
+
+        }
+        ListNode left;
+        for (int k = i; k < lists.length; k++) {
+            left = head;
+            ListNode right = lists[k];
+            if(right==null)
+                continue;
+            ListNode last = null;
+            while (left != null && right != null) {
+                if (left.val >= right.val) {
+                    ListNode node = new ListNode(left.val);
+                    left.val = right.val;
+                    node.next = left.next;
+                    left.next = node;
+                    left = node;
+                    right = right.next;
+                } else {
+                    if(left.next==null){
+                        last=left;
                     }
+                    left = left.next;
                 }
             }
-            if (result) {
-                System.out.println(res);
-            } else {
-                System.out.println(-1);
+            if (right != null) {
+                last.next = right;
             }
         }
-//        List<List<String>> accounts = new LinkedList<>();
-//        List<String> account = new LinkedList<>();
-//        account.add("John");
-//        account.add("johnsmith@mail.com");
-//        account.add("john00@mail.com");
-//        accounts.add(account);
-//        account = new LinkedList<>();
-//        account.add("John");
-//        account.add("johnnybravo@mail.com");
-//        accounts.add(account);
-//        account = new LinkedList<>();
-//        account.add("John");
-//        account.add("johnsmith@mail.com");
-//        account.add("john_newyork@mail.com");
-//        accounts.add(account);
-//        account = new LinkedList<>();
-//        account.add("Mary");
-//        account.add("mary@mail.com");
-//        accounts.add(account);
-//        int res = 0;
-//        HashMap<String, Integer> email_pep = new HashMap<>();
-//        HashMap<String, Integer> email_Id = new HashMap<>();
-//        ArrayList<Integer> emailId = new ArrayList<>();
-//        ArrayList<String> emailName = new ArrayList<>();
-//        for (int i = 0; i < accounts.size(); i++) {
-//            for (int j = 1; j < accounts.get(i).size(); j++) {
-//                String str = accounts.get(i).get(j);
-//                if (email_pep.isEmpty() || !email_pep.containsKey(str)) {
-//                    email_pep.put(str, i);
-//                    email_Id.put(str, res);
-//                    emailId.add(res);
-//                    emailName.add(str);
-//                    res += 1;
-//                }
-//            }
-//        }
-//        UnionFindSet union = new UnionFindSet();
-//        union.add(emailId.size());
-//        for (int i = 0; i < accounts.size(); i++) {
-//            for (int j = 1; j < accounts.get(i).size(); j++) {
-//                if (j + 1 < accounts.get(i).size()) {
-//                    String str1 = accounts.get(i).get(j);
-//                    String str2 = accounts.get(i).get(j + 1);
-//                    union.union(email_Id.get(str1), email_Id.get(str2));
-//                }
-//            }
-//        }
-//        HashMap<Integer, List<String>> id_emails = new HashMap<>();
-//        ArrayList<Integer> arrayList=union.unionRes();
-//        for (int i = 0; i < arrayList.size(); i++) {
-//            int num = email_pep.get(emailName.get(arrayList.get(i)));
-//            List<String> va = new LinkedList<>();
-//            if (!id_emails.isEmpty() && id_emails.containsKey(num)) {
-//                va = id_emails.get(num);
-//            }
-//            va.add(emailName.get(i));
-//            id_emails.put(num, va);
-//        }
-//        List<List<String>> lists = new LinkedList<>();
-//        List<String> list;
-//        for (int id : id_emails.keySet()) {
-//            list = id_emails.get(id);
-//            Collections.sort(list);  //字符串按字典序排序
-//            List<String> people = new LinkedList<>();
-//            people.add(accounts.get(id).get(0));
-//            people.addAll(list);
-//            lists.add(people);
-//        }
-//        System.out.println("emailId : " + emailId);
-//        System.out.println("emailName : " + emailName);
-//        System.out.println("email_Id : " + email_Id);
-//        System.out.println("email_pep : " + email_pep);
-//        System.out.println("union : " + arrayList);
-//        System.out.println("id_emails : " + id_emails);
-//        System.out.println("lists : " + lists);
-//        UnionFindSet set=new UnionFindSet();
-//        set.add(nums.length);
-//        set.union(1,3);
-//        set.union(2,4);
-//        set.union(3,5);
-//        System.out.println("sets: " +set.arrayList);
-//        System.out.println("1 and 5 : " +set.same(1,5));
-//        System.out.println("2 and 6 : " +set.same(2,6));
-//        System.out.println("sets number: " +set.num);
-//        System.out.println("dasfk; 4531 dsaiopw, 489612");
-        //读取所有输入数据//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+//        System.out.println(list);
+        long endTime = System.nanoTime();
+        System.out.println("程序运行时间： " + (endTime - startTime) / 1000 + "us");
+    }
+
+//    public List<List<Integer>> lists = new LinkedList<>();
+
+    public List<List<Integer>> backtrackLists = new LinkedList<>();
+
+    private void backtrack(int[] nums, List<Integer> list, int[] dp) {
+        if (list.size() == nums.length) {
+            backtrackLists.add(new ArrayList<>(list));  //数组、列表等只有单实例，需要创建新实例来存储每种情况
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (dp[i] == 1) continue;
+            dp[i] = 1;
+            list.add(nums[i]);
+            backtrack(nums, list, dp);
+            dp[i] = 0;
+            list.remove(list.size() - 1);
+        }
+    }
+    //在线考试模式
+//    import java.util.*;
+//    import java.io.*;
+//    public class Main{
+//        public static void main(String[] args) throws IOException{
+    //读取所有输入数据//
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        String str;
 //        while ((str = br.readLine()) != null) {
 //            System.out.println("res= " + str);
 //        }
-        //读取数组
+    //        String format = new DecimalFormat("0.0").format(res);
+    //读取数组
 //        Scanner sc = new Scanner(System.in);
 //        int n = sc.nextInt();
 //        int[][] num = new int[n][2];
@@ -199,65 +165,11 @@ public class TestJava {
 //            num[i][0] = a;
 //            num[i][1] = b;
 //        }
-        long endTime = System.nanoTime();
-        System.out.println("程序运行时间： " + (endTime - startTime) / 1000 + "us");
-    }
-
-    //在线考试模式
-//    import java.util.*;
-//    import java.io.*;
-//    public class Main{
-//        public static void main(String[] args) throws IOException{
-//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//            String str;
-//            while((str=br.readLine())!=null){
-//                char[] chArr = str.toCharArray();
-//                int[] temp = new int[150];
-//                for(int i=0;i<chArr.length;i++){
-//                    temp[chArr[i]]++;
-//                }
-//                int max = 0;
-//                for(int j=0;j<temp.length;j++){
-//                    if(max<temp[j]){
-//                        max = temp[j];
-//                    }
-//                }
-//                StringBuilder sbf = new StringBuilder();
-//                while(max!=0){
-//                    for(int j=0;j<temp.length;j++){
-//                        if(temp[j] == max){
-//                            sbf.append((char)j);
-//                        }
-//                    }
-//                    max--;
-//                }
-//                System.out.println(sbf.toString());
+//         System.out.println(sbf.toString());
 //            }
 //        }
 //    }
 
-    /**
-     * 异步多线程同步控制，数据安全锁
-     *
-     * @ return CompletableFuture<数据类型>
-     */
-    private int Concurrency;
-
-//    @Async
-//    @RequestMapping(value = "/callback", method = RequestMethod.POST)
-////    @Scheduled(fixedRate = 1000 * 60 * 60)
-//    public synchronized CompletableFuture<Integer> wxNotify(HttpServletRequest httpServletRequest, Integer n) {
-//        System.out.println("session= " + httpServletRequest.getSession());     //获取sessionId
-//        System.out.println("cookies= " + Arrays.toString(httpServletRequest.getCookies()));     //获取cookies
-//        System.out.println("n= " + n);
-//        int m = (int) (Math.random() * 100);
-//        Concurrency = 0;
-//        for (int i = 0; i < 2; i++) {
-//            Concurrency++;
-//            System.out.println("currentThread.Name: " + m + "-----currentThread(): " + i + "-----Concurrency= " + Concurrency);
-//        }
-//        return CompletableFuture.completedFuture(Concurrency);
-//    }
 
 //        JSONObject s = new JSONObject();
 //        JSONObject s1 = new JSONObject();
