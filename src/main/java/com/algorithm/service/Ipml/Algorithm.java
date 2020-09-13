@@ -2,6 +2,8 @@ package com.algorithm.service.Ipml;
 
 //import com.algorithm.entity.RedBlackTree;
 
+import com.algorithm.entity.ListNode;
+
 import java.util.*;
 
 public class Algorithm {
@@ -163,6 +165,21 @@ public class Algorithm {
         }
     }
 
+    //堆排序(大顶堆)/优先队列
+    public int[] heap;
+    public void heapSort(int[] arr, int index, int root){
+        if(index==root) {
+            heap = arr;
+            return;
+        }
+        if(arr[index]>arr[(index-1+root)/2]){
+            int min=arr[(index-1+root)/2];
+            arr[(index-1+root)/2]=arr[index];
+            arr[index]=min;
+            heapSort(arr,(index-1+root)/2,root);
+        }
+    }
+
     //动态规划零钱兑换
     public int coinsExchange(int[] coins, int target) {
         Arrays.sort(coins);
@@ -179,6 +196,37 @@ public class Algorithm {
         return dp[target] == target + 1 ? -1 : dp[target];
     }
 
+    //动态规划完全背包
+    public int[] completeBackpack(int[][] nums, int target) {
+        //例如nums=int[][]{{2,3,4,5},{3,4,5,6}};
+        int[] w=nums[0];
+        int[] v=nums[1];
+        int[] dp = new int[target + 1];  //dp[i][j]代表前i个***的钱加起来为j最少个数
+        for (int j = 1; j <= target; j++) {
+            for (int i=0; i<w.length; i++) {
+                if (j >= w[i])
+                    dp[j] = Math.max(dp[j], dp[j - w[i]] + v[i]);
+            }
+        }
+        return dp;
+    }
+
+    //动态规划01背包问题
+    public int[] backpack01(int[][] nums, int target){
+        int[] dp = new int[target + 1];  //dp[i][j]代表前i个***的钱加起来为j最少个数
+        int[] w=nums[0];
+        int[] v=nums[1];
+        for (int i = 0; i < w.length; i++) {
+            //反向走可以避免每个位置上重复使用某个物品
+            for(int j=target; j>=1; j--){
+                if(j>=w[i]){
+                    dp[j]=Math.max(dp[j],dp[j-w[i]]+v[i]);
+                }
+            }
+        }
+        return dp;
+    }
+
     //二维数组按某列值的大小排序
     public int[][] towDimenSort(int[][] nums, int i) {
         Arrays.sort(nums, new Comparator<int[]>() {
@@ -190,6 +238,79 @@ public class Algorithm {
         return nums;
     }
 
+    //查找字符串子序列
+    public boolean isSubsequence(String str, String child) {
+        int index = -1;
+        for (char c : str.toCharArray()){
+            index = child.indexOf(c, index+1);
+            if (index == -1) return false;
+        }
+        return true;
+    }
 
+    //字符串最长回文子序列
+    public int longestPalindromeSubseq(String s) {
+        if (null == s || s.length() == 0) {
+            return 0;
+        }
+        int len = s.length();
+        int[][] dp = new int[len][len];
+        for (int i = len - 1; i >= 0; i--) {
+            for (int j = i; j < len; j++) {
+                if (i == j) {
+                    dp[i][j] = 1;
+                } else if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[0][len-1];
+    }
 
+    //从第m个到第n个反转列表
+    public ListNode reverseList(ListNode head, int m, int n){
+        ListNode root = new ListNode(0);
+        root.next = head;
+        ListNode pre = root;
+        for (int i = 1; i < m; i++) {
+            pre = pre.next;
+        }
+        head = pre.next;
+        for (int i = m; i < n; i++) {
+            ListNode nex = head.next;
+            head.next = nex.next;
+            nex.next = pre.next;
+            pre.next = nex;
+        }
+        return root.next;
+    }
+
+    //动态规划求最长上升子序列
+    public int longestAscSubsequence(int[] nums) {
+        int len = nums.length;
+        if (len < 2) {
+            return len;
+        }
+        int[] dp = new int[len];
+        // 自己一定是一个子序列
+        Arrays.fill(dp, 1);
+        for (int i = 1; i < len; i++) {
+            // 看以前的，比它小的，说明可以接在后面形成一个更长的子序列
+            // int curMax = Integer.MIN_VALUE; 不能这样写，万一前面没有比自己小的，
+            // 这个值就得不到更新
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[j] + 1, dp[i]);
+                }
+                System.out.println(Arrays.toString(dp));
+            }
+        }
+        int res = dp[0];
+        for (int i = 0; i < len; i++) {
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
 }

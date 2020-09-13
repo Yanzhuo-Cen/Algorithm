@@ -6,7 +6,9 @@ import com.algorithm.entity.*;
 import com.algorithm.service.*;
 import com.algorithm.service.Ipml.Algorithm;
 import com.alibaba.druid.sql.visitor.functions.Char;
-import net.sf.json.JSONArray;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.text.StrBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -46,16 +48,16 @@ public class TestJava {
 
     //        @CrossOrigin(value = "http://localhost:7070", maxAge = 1800, allowedHeaders = "*")    //前后端跨域cors设置（前端域名为: 7070）
 //    @RequestMapping(value = "/xxx", method = RequestMethod.POST)   //value 表示的是请求地址
-    @Scheduled(fixedRate = 1000 * 60 * 60)
+    @Scheduled(fixedRate = 8000 * 60 * 60)
     public void getJson() throws IOException, ParseException {
         System.out.println("star------------");
-//        TreeNode root = new TreeNode(3);
-//        TreeNode a1 = new TreeNode(5);
-//        TreeNode a2 = new TreeNode(1);
-//        TreeNode a3 = new TreeNode(6);
-//        TreeNode a4 = new TreeNode(2);
-//        TreeNode a5 = new TreeNode(0);
-//        TreeNode a6 = new TreeNode(8);
+//        TreeNode root = new TreeNode(5);
+//        TreeNode a1 = new TreeNode(3);
+//        TreeNode a2 = new TreeNode(8);
+//        TreeNode a3 = new TreeNode(1);
+//        TreeNode a4 = new TreeNode(4);
+//        TreeNode a5 = new TreeNode(6);
+//        TreeNode a6 = new TreeNode(9);
 //        TreeNode a7 = new TreeNode(7);
 //        TreeNode a8 = new TreeNode(4);
 //        root.left = a1;
@@ -66,82 +68,53 @@ public class TestJava {
 //        a4.right = a8;
 //        a2.left = a5;
 //        a2.right = a6;
-//        int[][] intervals = new int[][]{{1,4},{9,12},{0,5},{3,6},{7,8},{2,6}};
-        ListNode head1 = new ListNode(3);
-//        head1.next = new ListNode(4);
-//        head1.next.next = new ListNode(5);
-        ListNode head2 = new ListNode(1);
-        head2.next = new ListNode(3);
-        head2.next.next = new ListNode(6);
-        ListNode head3 = new ListNode(2);
-        head3.next = new ListNode(6);
-        ListNode[] lists = new ListNode[3];
-        lists[0] = head1;
-        lists[1] = head2;
-        lists[2] = head3;
+//        int k=1;
+//        ListNode head = new ListNode(1);
+//        head.next = new ListNode(2);
+//        head.next.next = new ListNode(3);
+//        head.next.next.next = new ListNode(4);
+//        head.next.next.next.next = new ListNode(5);
+//        head.next.next.next.next.next = new ListNode(6);
+//        list = new LinkedList<>();
+//        list.add(3);
+//        list.add(4);
+//        triangle.add(list);
+//        list = new LinkedList<>();
+//        list.add(6);
+//        list.add(5);
+//        list.add(7);
+//        triangle.add(list);
+//        list = new LinkedList<>();
+//        list.add(4);
+//        list.add(1);
+//        list.add(8);
+//        list.add(3);
+//        triangle.add(list);
+//        int k=3;
+        int[] nums = new int[]{1,3,6,7,9,4,10,5,6};
         long startTime = System.nanoTime();
         Algorithm alg = new Algorithm();
-        ListNode head = lists[0];
-        int i=1;
-        while (head==null && i<lists.length) {
-            head=lists[i];
-            i++;
-        }
-        if(head==null){
-
-        }
-        ListNode left;
-        for (int k = i; k < lists.length; k++) {
-            left = head;
-            ListNode right = lists[k];
-            if(right==null)
-                continue;
-            ListNode last = null;
-            while (left != null && right != null) {
-                if (left.val >= right.val) {
-                    ListNode node = new ListNode(left.val);
-                    left.val = right.val;
-                    node.next = left.next;
-                    left.next = node;
-                    left = node;
-                    right = right.next;
-                } else {
-                    if(left.next==null){
-                        last=left;
-                    }
-                    left = left.next;
-                }
-            }
-            if (right != null) {
-                last.next = right;
-            }
-        }
-        while (head != null) {
-            System.out.println(head.val);
-            head = head.next;
-        }
-//        System.out.println(list);
+        int res = 0;
+        
+        System.out.println(res);
         long endTime = System.nanoTime();
         System.out.println("程序运行时间： " + (endTime - startTime) / 1000 + "us");
     }
 
-//    public List<List<Integer>> lists = new LinkedList<>();
+    //    public List<List<Integer>> lists = new LinkedList<>();
+    private ListNode root = new ListNode(0);
 
-    public List<List<Integer>> backtrackLists = new LinkedList<>();
-
-    private void backtrack(int[] nums, List<Integer> list, int[] dp) {
-        if (list.size() == nums.length) {
-            backtrackLists.add(new ArrayList<>(list));  //数组、列表等只有单实例，需要创建新实例来存储每种情况
+    private void find(ListNode pre, ListNode node, int sum, int k) {
+        if (sum == k) {
+            root = pre;
             return;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (dp[i] == 1) continue;
-            dp[i] = 1;
-            list.add(nums[i]);
-            backtrack(nums, list, dp);
-            dp[i] = 0;
-            list.remove(list.size() - 1);
-        }
+        root.val = node.val;
+        root.next = pre;
+        pre = root;
+        root = new ListNode(0);
+        node = node.next;
+        find(pre, node, sum + 1, k);
     }
     //在线考试模式
 //    import java.util.*;

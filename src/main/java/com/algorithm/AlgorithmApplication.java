@@ -41,11 +41,15 @@ public class AlgorithmApplication {
             System.out.println(b.getName());
         }
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        while (sc.hasNextInt()){
-
-        }
-
+//        while (sc.hasNext()){
+//            String st = sc.nextLine();
+//            int t=Integer.parseInt(st);
+//            for(int i=0; i<t; i++) {
+//                String str = sc.nextLine();
+//                String[] strings = str.split(" ");
+//                System.out.println("strings= " + Arrays.toString(strings));
+//            }
+//        }
     }
 }
 
