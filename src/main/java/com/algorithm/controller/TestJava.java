@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.*;
@@ -53,11 +54,11 @@ public class TestJava {
         System.out.println("star------------");
 //        TreeNode root = new TreeNode(5);
 //        TreeNode a1 = new TreeNode(3);
-//        TreeNode a2 = new TreeNode(8);
-//        TreeNode a3 = new TreeNode(1);
-//        TreeNode a4 = new TreeNode(4);
-//        TreeNode a5 = new TreeNode(6);
-//        TreeNode a6 = new TreeNode(9);
+//        TreeNode a2 = new TreeNode(2);
+//        TreeNode a3 = new TreeNode(4);
+//        TreeNode a4 = new TreeNode(1);
+//        TreeNode a5 = new TreeNode(5);
+//        TreeNode a6 = new TreeNode(1);
 //        TreeNode a7 = new TreeNode(7);
 //        TreeNode a8 = new TreeNode(4);
 //        root.left = a1;
@@ -90,32 +91,47 @@ public class TestJava {
 //        list.add(8);
 //        list.add(3);
 //        triangle.add(list);
-//        int k=3;
-        int[] nums = new int[]{1,3,6,7,9,4,10,5,6};
+//        int[] nums = new int[]{1,-2,-5,-4,-3,3,3,5};
+        String s = "((()()))";
         long startTime = System.nanoTime();
-        Algorithm alg = new Algorithm();
-        int res = 0;
-        
-        System.out.println(res);
+        int n = s.length();
+        int[] dp = new int[n];
+        int max = 0;
+        for (int i = 1; i < n; i++) {
+            if (s.charAt(i) == ')') {
+                int j = i - 1 - dp[i - 1] ;
+                if (j >= 0 && s.charAt(j) == '(')
+                    dp[i] = (i - j + 1) + ((j - 1) >= 0 ? dp[j - 1] : 0);
+            }
+            max = Math.max(max, dp[i]);
+        }
+        System.out.println(Arrays.toString(dp));
+        System.out.println(max);
         long endTime = System.nanoTime();
         System.out.println("程序运行时间： " + (endTime - startTime) / 1000 + "us");
     }
 
     //    public List<List<Integer>> lists = new LinkedList<>();
-    private ListNode root = new ListNode(0);
+    public List<List<String>> lists;
 
-    private void find(ListNode pre, ListNode node, int sum, int k) {
-        if (sum == k) {
-            root = pre;
+    public void backtrack(int j, int[] nums, List<Integer> list, int[] dp, List<List<Integer>> backtrackLists, int target, int sum) {
+        if (list.size() == 4) {
+            if (sum == target)
+                backtrackLists.add(new ArrayList<>(list));  //数组、列表等只有单实例，需要创建新实例来存储每种情况
             return;
         }
-        root.val = node.val;
-        root.next = pre;
-        pre = root;
-        root = new ListNode(0);
-        node = node.next;
-        find(pre, node, sum + 1, k);
+        for (int i = j; i < nums.length; i++) {
+            if (dp[i] == 1) continue;
+            if (i > 0 && nums[i] == nums[i - 1] && dp[i - 1] == 0) continue;   //数组中有重复元素时
+            if (nums[i] > 0 && sum + nums[i] > target) break;
+            dp[i] = 1;
+            list.add(nums[i]);
+            backtrack(i + 1, nums, list, dp, backtrackLists, target, sum + nums[i]);
+            dp[i] = 0;
+            list.remove(list.size() - 1);
+        }
     }
+
     //在线考试模式
 //    import java.util.*;
 //    import java.io.*;
@@ -158,3 +174,4 @@ public class TestJava {
 //        System.out.println(sss);
 
 }
+

@@ -58,59 +58,46 @@ public class Algorithm {
     }
 
     //快速排序
-    public int[] quickSort(int[] arr) {
-        if (arr.length / 2 == 0) {
-            return arr;
+    public void quickSort(int[] arr, int left, int right) {
+        int i,j,temp,t;
+        if(left>right){
+            return;
         }
-        int left = 0;
-        int right = arr.length - 1;
-        String posi = "r";
-        int base = arr[0];
-        while (left < right) {
-            if (posi.equals("r")) {
-                if (arr[right] < base) {
-                    arr[left] = arr[right];
-                    arr[right] = base;
-                    posi = "l";
-                } else {
-                    right--;
-                }
-            } else {
-                if (arr[left] > base) {
-                    arr[right] = arr[left];
-                    arr[left] = base;
-                    posi = "r";
-                } else {
-                    left++;
-                }
+        i=left;
+        j=right;
+        //temp就是基准位
+        temp = arr[left];
+
+        while (i<j) {
+            //先看右边，依次往左递减
+            while (temp<=arr[j]&&i<j) {
+                j--;
+            }
+            //再看左边，依次往右递增
+            while (temp>=arr[i]&&i<j) {
+                i++;
+            }
+            //如果满足条件则交换
+            if (i<j) {
+                t = arr[j];
+                arr[j] = arr[i];
+                arr[i] = t;
             }
         }
-        arr[left] = base;
-        int[] leftarr = new int[left + 1];
-        int[] rightarr = new int[arr.length - left - 1];
-        for (int j = 0; j < arr.length; j++) {
-            if (j <= left) {
-                leftarr[j] = arr[j];
-            } else {
-                rightarr[j - left - 1] = arr[j];
-            }
-        }
-        leftarr = quickSort(leftarr);
-        rightarr = quickSort(rightarr);
-        for (int j = 0; j < arr.length; j++) {
-            if (j <= left) {
-                arr[j] = leftarr[j];
-            } else {
-                arr[j] = rightarr[j - left - 1];
-            }
-        }
-        return arr;
+        //最后将基准为与i和j相等位置的数字交换
+        arr[left] = arr[i];
+        arr[i] = temp;
+        //递归调用左半数组
+        quickSort(arr, left, j-1);
+        //递归调用右半数组
+        quickSort(arr, j+1, right);
     }
 
+
+    //归并排序
     private int ReversePair = 0;  //逆序对数量
     public int[] ReverseNum;    //目标数组，引用时赋值
 
-    //归并排序
     public void mergeSort(int left, int right, int mid) {
         if (left >= right)
             return;
@@ -151,12 +138,14 @@ public class Algorithm {
     public List<List<Integer>> backtrackLists = new LinkedList<>();
 
     public void backtrack(int[] nums, List<Integer> list, int[] dp) {
+        //Arrays.sort(nums) 数组中有重复元素时需要先排序再进入该函数
         if (list.size() == nums.length) {
             backtrackLists.add(new ArrayList<>(list));  //数组、列表等只有单实例，需要创建新实例来存储每种情况
             return;
         }
         for (int i = 0; i < nums.length; i++) {
             if (dp[i] == 1) continue;
+//            if(i>0 && nums[i]==nums[i-1] && dp[i-1]==0) continue;   //数组中有重复元素时
             dp[i] = 1;
             list.add(nums[i]);
             backtrack(nums, list, dp);

@@ -247,7 +247,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>RELEASE</version>
-            <scope>compile</scope>
+<!--            <scope>compile</scope>   默认就是compile-->
         </dependency>
     </dependencies>
 
